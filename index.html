@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>IRON LOG</title>
-<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Share+Tech+Mono&display=swap');
+  </style>
 <style>
   :root {
     --bg:#0a0a0a; --panel:#0f0f0f; --border:#1c1c1c;
@@ -16,100 +18,85 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--bg);color:var(--text);font-family:'Share Tech Mono',monospace;min-height:100vh;padding-bottom:60px;}
 
-header{background:#000;border-bottom:2px solid var(–accent);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-.logo{font-family:‘Black Ops One’,cursive;font-size:24px;letter-spacing:6px;color:var(–accent);}
-.hdr-right{text-align:right;}
-.hdr-lbl{font-size:9px;color:var(–muted);letter-spacing:2px;}
-.hdr-val{font-family:‘Black Ops One’,cursive;font-size:15px;color:var(–accent);}
-
-.tabs{display:flex;background:#000;border-bottom:1px solid var(–border);}
-.tab{flex:1;padding:12px 4px;cursor:pointer;font-family:‘Black Ops One’,cursive;font-size:11px;letter-spacing:2px;color:var(–muted);border-bottom:3px solid transparent;text-align:center;transition:all .2s;}
-.tab.active{color:var(–accent);border-bottom-color:var(–accent);}
-
-.view{display:none;padding:16px;}
-.view.active{display:block;}
-
-.sec{font-family:‘Black Ops One’,cursive;font-size:9px;letter-spacing:5px;color:var(–muted);margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(–border);}
-.sec:first-child{margin-top:0;}
-
-.lift-sel{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px;}
-.lift-btn{background:#000;border:2px solid var(–border);color:var(–muted);font-family:‘Black Ops One’,cursive;font-size:10px;letter-spacing:2px;padding:12px 2px;cursor:pointer;text-align:center;transition:all .15s;}
-.lift-btn.active[data-lift=“BENCH”]{border-color:var(–bench);color:var(–bench);background:rgba(79,195,247,.06);}
-.lift-btn.active[data-lift=“DEADS”]{border-color:var(–deads);color:var(–deads);background:rgba(239,83,80,.06);}
-.lift-btn.active[data-lift=“PRESS”]{border-color:var(–press);color:var(–press);background:rgba(102,187,106,.06);}
-.lift-btn.active[data-lift=“SQUAT”]{border-color:var(–squat);color:var(–squat);background:rgba(171,71,188,.06);}
-
-.sets-hdr{display:grid;grid-template-columns:44px 1fr 66px;padding:6px 14px;gap:10px;}
-.sets-hdr span{font-family:‘Black Ops One’,cursive;font-size:9px;letter-spacing:3px;color:var(–muted);}
-.sets-hdr span:last-child{text-align:right;}
-
-.set-row{display:grid;grid-template-columns:44px 1fr 66px;align-items:center;padding:12px 14px;border-bottom:1px solid #0d0d0d;gap:10px;}
-.set-row.warm .sr-reps,.set-row.warm .sr-plates,.set-row.warm .sr-wt{color:var(–warm);}
-.set-row.work .sr-reps,.set-row.work .sr-plates,.set-row.work .sr-wt{color:var(–work);}
-.set-row.top-set{background:#0d0d00;}
-.sr-reps{font-family:‘Black Ops One’,cursive;font-size:26px;line-height:1;}
-.sr-plates{font-size:12px;letter-spacing:1px;line-height:1.4;}
-.sr-wt{font-family:‘Black Ops One’,cursive;font-size:26px;text-align:right;}
-
-.log-note{font-size:11px;color:var(–muted);line-height:1.7;margin-bottom:16px;padding:12px;background:#0d0d0d;border-left:2px solid var(–accent);}
-.log-note strong{color:var(–accent);}
-
-.log-lift-card{background:#000;border:1px solid var(–border);padding:14px;margin-bottom:8px;}
-.log-lift-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
-.log-lift-name{font-family:‘Black Ops One’,cursive;font-size:13px;letter-spacing:3px;}
-.log-lift-next{font-size:10px;color:var(–muted);text-align:right;}
-.log-lift-next strong{color:var(–work);}
-
-.log-rep-row{display:grid;grid-template-columns:60px 1fr 30px;align-items:center;gap:8px;margin-bottom:8px;}
-.log-rep-lbl{font-family:‘Black Ops One’,cursive;font-size:11px;color:var(–muted);}
-.log-inp{background:var(–bg);border:1px solid var(–border);color:var(–warm);font-family:‘Share Tech Mono’,monospace;font-size:19px;width:100%;padding:6px 10px;outline:none;text-align:right;-moz-appearance:textfield;}
-.log-inp::-webkit-outer-spin-button,.log-inp::-webkit-inner-spin-button{-webkit-appearance:none;}
-.log-inp:focus{border-color:var(–warm);}
-.log-inp::placeholder{color:#1e1e1e;}
-.log-inp-unit{font-size:10px;color:var(–muted);}
-
-.max-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-.max-lbl{font-family:‘Black Ops One’,cursive;font-size:10px;letter-spacing:3px;min-width:60px;}
-.max-inp{background:#000;border:1px solid var(–border);color:var(–accent);font-family:‘Share Tech Mono’,monospace;font-size:20px;width:100px;padding:6px 8px;outline:none;text-align:right;-moz-appearance:textfield;}
-.max-inp::-webkit-outer-spin-button,.max-inp::-webkit-inner-spin-button{-webkit-appearance:none;}
-.max-inp:focus{border-color:var(–accent);}
-.max-unit{font-size:10px;color:var(–muted);}
-
-.save-btn{background:var(–accent);color:#000;border:none;font-family:‘Black Ops One’,cursive;font-size:12px;letter-spacing:3px;padding:13px;cursor:pointer;width:100%;margin-top:14px;}
-.save-btn:active{opacity:.8;}
-
-.pr-note{font-size:11px;color:var(–muted);line-height:1.7;margin-bottom:14px;padding:12px;background:#0d0d0d;border-left:2px solid var(–work);}
-.pr-note strong{color:var(–work);}
-
-.pr-best-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;}
-.pr-best-card{background:#000;border:1px solid var(–border);padding:10px 6px;text-align:center;}
-.pr-best-lbl{font-family:‘Black Ops One’,cursive;font-size:9px;letter-spacing:2px;margin-bottom:4px;}
-.pr-best-val{font-family:‘Black Ops One’,cursive;font-size:18px;}
-.pr-total-box{background:#0a1200;border:1px solid #253300;padding:11px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;}
-.pr-total-lbl{font-family:‘Black Ops One’,cursive;font-size:9px;letter-spacing:3px;color:var(–muted);}
-.pr-total-val{font-family:‘Black Ops One’,cursive;font-size:22px;color:var(–accent);}
-
-.prt-wrap{overflow-x:auto;}
-table.prt{border-collapse:collapse;font-size:11px;width:100%;}
-table.prt thead th{font-family:‘Black Ops One’,cursive;font-size:10px;letter-spacing:2px;padding:10px 6px;border-bottom:2px solid var(–border);text-align:center;white-space:nowrap;background:#000;}
-table.prt thead th:first-child{color:var(–muted);width:40px;}
-table.prt tbody tr{border-bottom:1px solid #111;}
-table.prt tbody tr.has-entry{background:#0d0d0d;}
-table.prt tbody td{padding:0;text-align:center;border-right:1px solid #111;}
-table.prt tbody td:first-child{border-right:2px solid var(–border);}
-.pr-row-num{font-family:‘Black Ops One’,cursive;font-size:13px;color:var(–muted);display:flex;align-items:center;justify-content:center;min-height:54px;padding:0 6px;}
-.pr-cell-wrap{padding:5px 4px 2px;}
-.pr-w-inp{background:transparent;border:none;border-bottom:1px solid #1e1e1e;color:var(–work);font-family:‘Share Tech Mono’,monospace;font-size:16px;width:100%;min-width:62px;padding:4px 4px;outline:none;text-align:center;-moz-appearance:textfield;display:block;}
-.pr-w-inp::-webkit-outer-spin-button,.pr-w-inp::-webkit-inner-spin-button{-webkit-appearance:none;}
-.pr-w-inp:focus{border-bottom-color:var(–accent);color:var(–accent);background:#050505;}
-.pr-w-inp::placeholder{color:#1c1c1c;}
-.pr-est-val{font-size:9px;color:#282828;text-align:center;padding:1px 4px 4px;display:block;letter-spacing:1px;}
-.pr-est-val.hi{color:var(–accent);}
-.bench-h{color:var(–bench)!important;} .deads-h{color:var(–deads)!important;}
-.press-h{color:var(–press)!important;} .squat-h{color:var(–squat)!important;}
-.pr-save-btn{background:var(–work);color:#000;border:none;font-family:‘Black Ops One’,cursive;font-size:12px;letter-spacing:3px;padding:13px;cursor:pointer;width:100%;margin-top:12px;}
+  header{background:#000;border-bottom:2px solid var(--accent);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+  .logo{font-family:'Oswald',sans-serif;font-size:24px;letter-spacing:6px;color:var(--accent);}
+  .hdr-right{text-align:right;}
+  .hdr-lbl{font-size:9px;color:var(--muted);letter-spacing:2px;}
+  .hdr-val{font-family:'Oswald',sans-serif;font-size:15px;color:var(--accent);}
+  .tabs{display:flex;background:#000;border-bottom:1px solid var(--border);}
+  .tab{flex:1;padding:12px 4px;cursor:pointer;font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:2px;color:var(--muted);border-bottom:3px solid transparent;text-align:center;transition:all .2s;}
+  .tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .view{display:none;padding:16px;}
+  .view.active{display:block;}
+  .sec{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:5px;color:var(--muted);margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+  .sec:first-child{margin-top:0;}
+  .lift-sel{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px;}
+  .lift-btn{background:#000;border:2px solid var(--border);color:var(--muted);font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2px;padding:12px 2px;cursor:pointer;text-align:center;transition:all .15s;}
+  .lift-btn.active[data-lift="BENCH"]{border-color:var(--bench);color:var(--bench);background:rgba(79,195,247,.06);}
+  .lift-btn.active[data-lift="DEADS"]{border-color:var(--deads);color:var(--deads);background:rgba(239,83,80,.06);}
+  .lift-btn.active[data-lift="PRESS"]{border-color:var(--press);color:var(--press);background:rgba(102,187,106,.06);}
+  .lift-btn.active[data-lift="SQUAT"]{border-color:var(--squat);color:var(--squat);background:rgba(171,71,188,.06);}
+  .sets-hdr{display:grid;grid-template-columns:44px 1fr 66px;padding:6px 14px;gap:10px;}
+  .sets-hdr span{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:3px;color:var(--muted);}
+  .sets-hdr span:last-child{text-align:right;}
+  .set-row{display:grid;grid-template-columns:44px 1fr 66px;align-items:center;padding:12px 14px;border-bottom:1px solid #0d0d0d;gap:10px;}
+  .set-row.warm .sr-reps,.set-row.warm .sr-plates,.set-row.warm .sr-wt{color:var(--warm);}
+  .set-row.work .sr-reps,.set-row.work .sr-plates,.set-row.work .sr-wt{color:var(--work);}
+  .set-row.top-set{background:#0d0d00;}
+  .sr-reps{font-family:'Oswald',sans-serif;font-size:26px;line-height:1;}
+  .sr-plates{font-size:12px;letter-spacing:1px;line-height:1.4;}
+  .sr-wt{font-family:'Oswald',sans-serif;font-size:26px;text-align:right;}
+  .log-note{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:16px;padding:12px;background:#0d0d0d;border-left:2px solid var(--accent);}
+  .log-note strong{color:var(--accent);}
+  .log-lift-card{background:#000;border:1px solid var(--border);padding:14px;margin-bottom:8px;}
+  .log-lift-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .log-lift-name{font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:3px;}
+  .log-lift-next{font-size:10px;color:var(--muted);text-align:right;}
+  .log-lift-next strong{color:var(--work);}
+  .log-rep-row{display:grid;grid-template-columns:60px 1fr 30px;align-items:center;gap:8px;margin-bottom:8px;}
+  .log-rep-lbl{font-family:'Oswald',sans-serif;font-size:11px;color:var(--muted);}
+  .log-inp{background:var(--bg);border:1px solid var(--border);color:var(--warm);font-family:'Share Tech Mono',monospace;font-size:19px;width:100%;padding:6px 10px;outline:none;text-align:right;-moz-appearance:textfield;}
+  .log-inp::-webkit-outer-spin-button,.log-inp::-webkit-inner-spin-button{-webkit-appearance:none;}
+  .log-inp:focus{border-color:var(--warm);}
+  .log-inp::placeholder{color:#1e1e1e;}
+  .log-inp-unit{font-size:10px;color:var(--muted);}
+  .max-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .max-lbl{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:3px;min-width:60px;}
+  .max-inp{background:#000;border:1px solid var(--border);color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:20px;width:100px;padding:6px 8px;outline:none;text-align:right;-moz-appearance:textfield;}
+  .max-inp::-webkit-outer-spin-button,.max-inp::-webkit-inner-spin-button{-webkit-appearance:none;}
+  .max-inp:focus{border-color:var(--accent);}
+  .max-unit{font-size:10px;color:var(--muted);}
+  .save-btn{background:var(--accent);color:#000;border:none;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:3px;padding:13px;cursor:pointer;width:100%;margin-top:14px;}
+  .save-btn:active{opacity:.8;}
+  .pr-note{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:14px;padding:12px;background:#0d0d0d;border-left:2px solid var(--work);}
+  .pr-note strong{color:var(--work);}
+  .pr-best-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;}
+  .pr-best-card{background:#000;border:1px solid var(--border);padding:10px 6px;text-align:center;}
+  .pr-best-lbl{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:2px;margin-bottom:4px;}
+  .pr-best-val{font-family:'Oswald',sans-serif;font-size:18px;}
+  .pr-total-box{background:#0a1200;border:1px solid #253300;padding:11px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;}
+  .pr-total-lbl{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:3px;color:var(--muted);}
+  .pr-total-val{font-family:'Oswald',sans-serif;font-size:22px;color:var(--accent);}
+  .prt-wrap{overflow-x:auto;}
+  table.prt{border-collapse:collapse;font-size:11px;width:100%;}
+  table.prt thead th{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2px;padding:10px 6px;border-bottom:2px solid var(--border);text-align:center;white-space:nowrap;background:#000;}
+  table.prt thead th:first-child{color:var(--muted);width:40px;}
+  table.prt tbody tr{border-bottom:1px solid #111;}
+  table.prt tbody tr.has-entry{background:#0d0d0d;}
+  table.prt tbody td{padding:0;text-align:center;border-right:1px solid #111;}
+  table.prt tbody td:first-child{border-right:2px solid var(--border);}
+  .pr-row-num{font-family:'Oswald',sans-serif;font-size:13px;color:var(--muted);display:flex;align-items:center;justify-content:center;min-height:54px;padding:0 6px;}
+  .pr-cell-wrap{padding:5px 4px 2px;}
+  .pr-w-inp{background:transparent;border:none;border-bottom:1px solid #1e1e1e;color:var(--work);font-family:'Share Tech Mono',monospace;font-size:16px;width:100%;min-width:62px;padding:4px 4px;outline:none;text-align:center;-moz-appearance:textfield;display:block;}
+  .pr-w-inp::-webkit-outer-spin-button,.pr-w-inp::-webkit-inner-spin-button{-webkit-appearance:none;}
+  .pr-w-inp:focus{border-bottom-color:var(--accent);color:var(--accent);background:#050505;}
+  .pr-w-inp::placeholder{color:#1c1c1c;}
+  .pr-est-val{font-size:9px;color:#282828;text-align:center;padding:1px 4px 4px;display:block;letter-spacing:1px;}
+  .pr-est-val.hi{color:var(--accent);}
+  .bench-h{color:var(--bench)!important;} .deads-h{color:var(--deads)!important;}
+  .press-h{color:var(--press)!important;} .squat-h{color:var(--squat)!important;}
+  .pr-save-btn{background:var(--work);color:#000;border:none;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:3px;padding:13px;cursor:pointer;width:100%;margin-top:12px;}
 </style>
-
 </head>
 <body>
 
@@ -438,6 +425,5 @@ const initBest=getBestEsts();
 const initTotal=(initBest.BENCH||0)+(initBest.DEADS||0)+(initBest.SQUAT||0);
 document.getElementById('hdr-total').textContent=initTotal?Math.round(initTotal)+' LB':'—';
 </script>
-
 </body>
 </html>
