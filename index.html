@@ -127,9 +127,9 @@
 
 <div class="view active" id="view-lift">
   <div class="lift-sel">
-    <button class="lift-btn active" data-lift="BENCH" onclick="selLift('BENCH')">BENCH</button>
+    <button class="lift-btn active" data-lift="PRESS" onclick="selLift('PRESS')">PRESS</button>
     <button class="lift-btn" data-lift="DEADS" onclick="selLift('DEADS')">DEADS</button>
-    <button class="lift-btn" data-lift="PRESS" onclick="selLift('PRESS')">PRESS</button>
+    <button class="lift-btn" data-lift="BENCH" onclick="selLift('BENCH')">BENCH</button>
     <button class="lift-btn" data-lift="SQUAT" onclick="selLift('SQUAT')">SQUAT</button>
   </div>
   <div class="sets-hdr"><span>REPS</span><span>PLATES / SIDE</span><span>TOTAL</span></div>
@@ -176,7 +176,7 @@
 </div>
 
 <script>
-const LIFTS = ['BENCH','DEADS','PRESS','SQUAT'];
+const LIFTS = ['PRESS','DEADS','BENCH','SQUAT'];
 const LV = {BENCH:'var(--bench)',DEADS:'var(--deads)',PRESS:'var(--press)',SQUAT:'var(--squat)'};
 const PLATES = [45,35,25,10,5,2.5];
 const BAR = {BENCH:45,DEADS:45,PRESS:45,SQUAT:45};
