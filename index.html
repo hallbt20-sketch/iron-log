@@ -160,13 +160,9 @@
   <div class="sec">SESSION LOG — REPS × WEIGHT</div>
   <div class="prt-wrap">
     <table class="prt">
-      <thead>
+      <thead id="prt-head">
         <tr>
           <th style="color:var(--muted)">REPS</th>
-          <th class="bench-h">BENCH</th>
-          <th class="deads-h">DEADS</th>
-          <th class="press-h">PRESS</th>
-          <th class="squat-h">SQUAT</th>
         </tr>
       </thead>
       <tbody id="prt-body"></tbody>
@@ -347,6 +343,9 @@ function getBestEsts() {
 
 function renderPRTable() {
   const best=getBestEsts();
+  // Build header dynamically from LIFTS array
+  const clsMap={BENCH:'bench-h',DEADS:'deads-h',PRESS:'press-h',SQUAT:'squat-h'};
+  document.getElementById('prt-head').innerHTML=`<tr><th style="color:var(--muted)">REPS</th>${LIFTS.map(l=>`<th class="${clsMap[l]}">${l}</th>`).join('')}</tr>`;
   document.getElementById('pr-best-bar').innerHTML=LIFTS.map(lift=>`
     <div class="pr-best-card">
       <div class="pr-best-lbl" style="color:${LV[lift]}">${lift}</div>
